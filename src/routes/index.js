@@ -3,16 +3,20 @@ const router = Router()
 const admin = require('firebase-admin')
 var serviceAccount = require("../../newrona-831b7-firebase-adminsdk-gb2e5-b37ca609bb.json");
 
+// Conexion Firestore
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: 'https://newrona-831b7-default-rtdb.firebaseio.com/'
 })
 
 const db = admin.firestore()
-
+// Ruta Principal
 router.get("/", (req, res) => {
   res.render('home')
 })
+
+
+// Mostrar Gerente
 router.get("/gerente/:id", (req, res) => {
   db.collection('operarios').where('GerenteID', '==', req.params.id).get().then(results =>{
     let data = results.docs.map(x => ({
@@ -23,14 +27,13 @@ router.get("/gerente/:id", (req, res) => {
   })
 })
 
+// Crear Gerente
 router.get("/new-gerente/:id", (req, res) => {
   if (req.params.id !== '1') {
     res.render('registrar_gerente', {gerenteID: req.params.id})
   }else{
     res.render('registrar_gerente')
   }
-
- 
 })
 router.post('/new-gerente/:id', (req, res) => {
   let newGerente = {
@@ -78,9 +81,10 @@ router.post('/new-gerente/:id', (req, res) => {
     }
   })
 
- 
 })
 
+
+// Login Gerente
 router.post('/login-gerente', (req, res) => {
   let gerente = {
     usuario: req.body.Usuario,
@@ -111,6 +115,8 @@ router.post('/login-gerente', (req, res) => {
   })
 })
 
+
+// Crear Operario
 router.get("/new-operario/:id", (req, res) =>{
   res.render('new_operario',  {gerenteID: req.params.id})
 })
@@ -132,12 +138,7 @@ router.post('/new-operario/:id', (req, res) => {
 })
 
 
-
-
-
-
-
-
+// Eliminar Operario
 router.get('/delete-operario/:gerid/:id', (req, res) => {
   db.collection('operarios').doc(req.params.id).delete()
   res.redirect('/gerente/'+req.params.gerid)

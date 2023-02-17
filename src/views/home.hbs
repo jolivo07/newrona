@@ -1,0 +1,36 @@
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <div class="col-7 px-0">
+            <img src="https://www.amsted.com/wp-content/uploads/2022/08/cm-sarah-sidebar-1024x753.jpg" width="100%"
+                height="100%" alt="">
+        </div>
+        <div class="col-5 h-100 d-flex justify-content-center align-items-center px-0">
+            <div class="bg-white px-5 pt-5 pb-5 shadow rounded">
+                <h1 class="text-center px-5">Welcome!!</h1>
+                <form action="/login-gerente" method="post">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control my-3" name="Usuario" id="floatingInput" placeholder="Usuario">
+                        <label for="floatingInput">Usuario</label>
+                    </div>
+                     <div class="form-floating mb-3">
+                        <input type="password" class="form-control my-3" name="Contraseña" id="floatingInput" placeholder="Contraseña">
+                        <label for="floatingInput">Contraseña</label>
+                    </div>
+
+                    {{#if err}}
+                    <div>
+                        <p class="text-danger text-center">{{err}}</p>
+                    </div>
+                    {{/if}}
+                    <div class="d-flex justify-content-between px-5">
+                        <button class="btn btn-primary mx-3 px-4">Ingresar</button>
+                        <a class="btn btn-primary mx-3 px-4" href="/new-gerente/1">Registrar</a>
+                    </div>
+
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

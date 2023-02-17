@@ -1,0 +1,39 @@
+<div class="container my-auto">
+    <div class="p-4 container bg-white border w-50 shadow ">
+        <div class="row">
+            <div class="col-3 d-flex align-items-center pb-3">
+                <a class="text-black" href="{{#if gerenteID}}/gerente/{{gerenteID}}{{else}}/{{/if}}"><i class="fa-solid fa-arrow-left"></i></a>
+            </div>
+            <div class="col-9 pb-3">
+                <h1 class="text-start">Registrar Gerente</h1>
+            </div>
+        </div>
+        <form action="/new-gerente/{{#if gerenteID}}{{gerenteID}}{{else}}1{{/if}}" method="post">
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" class="form-control" name="Nombre" autofocus>
+                </div>
+                <div class="col-6 mb-3">
+                    <label class="form-label">Apellido</label>
+                    <input type="text" class="form-control" name="Apellido">
+                </div>
+                <div class="col-6 mb-3">
+                    <label class="form-label">Usuario</label>
+                    <input type="email" class="form-control" name="Usuario">
+                </div>
+                <div class="col-6 mb-3">
+                    <label class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" name="Contraseña">
+                </div>
+            </div>
+
+            <button class="btn btn-primary w-100">Registrar</button>
+        </form>
+        {{#if err}}
+        <div>
+            <p class="text-danger text-center">{{err}}</p>
+        </div>
+        {{/if}}
+    </div>
+</div>
